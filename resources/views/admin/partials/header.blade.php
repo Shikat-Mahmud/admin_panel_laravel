@@ -12,7 +12,7 @@
 
     <header class="pc-header">
         <div class="m-header">
-            <a href="{{ route('admin.index') }}" class="b-brand text-primary">
+            <a href="{{ route('home') }}" class="b-brand text-primary">
 
                 @php
                 $settings = generalSettings()
@@ -90,7 +90,7 @@
                     <li class="dropdown pc-h-item header-user-profile">
                         <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
                             role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
-                            @if(auth()->user()->photo)
+                            @if(isset(auth()->user()->photo))
                             <img src="{{ asset('storage/' . auth()->user()->photo) }}"
                                 style="height: 40px; width:40px; object-fit: cover; border-radius: 50%;"
                                 alt="user-image">
@@ -112,7 +112,7 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
 
-                                                    @if(auth()->user()->photo)
+                                                    @if(isset(auth()->user()->photo))
                                                     <img src="{{ asset('storage/' . auth()->user()->photo) }}"
                                                         class="wid-50 rounded-circle"
                                                         style="height: 50px; width: 50px; object-fit: cover; margin-right: 5px; border-radius: 50%; box-shadow: 0 5px 10px 0 rgba(0,0,0,.2);">
@@ -122,8 +122,10 @@
                                                     @endif
                                                 </div>
                                                 <div class="flex-grow-1 mx-3">
+                                                    @if (isset(auth()->user()->photo))
                                                     <h5 class="mb-0">{{ auth()->user()->name }}</h5>
                                                     <span class="link-primary">{{ auth()->user()->email }}</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </li>
