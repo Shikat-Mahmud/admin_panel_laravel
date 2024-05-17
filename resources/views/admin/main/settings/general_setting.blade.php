@@ -49,10 +49,10 @@
 
                                 <div class="row mb-3">
                                     <label for="inputPassword" class="col-sm-12 col-form-label">Business Whatsapp
-                                        Number: <span class="text-danger">*</span> </label>
+                                        Number: </label>
                                     <div class="col-sm-12">
                                         <input type="tel" placeholder="Enter Number" class="form-control"
-                                            name="business_whatsapp" required=""
+                                            name="business_whatsapp"
                                             value="{{ $general->business_whatsapp ?? '' }}">
                                     </div>
                                 </div>
