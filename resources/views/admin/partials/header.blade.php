@@ -122,10 +122,8 @@
                                                     @endif
                                                 </div>
                                                 <div class="flex-grow-1 mx-3">
-                                                    @if (isset(auth()->user()->photo))
                                                     <h5 class="mb-0">{{ auth()->user()->name }}</h5>
                                                     <span class="link-primary">{{ auth()->user()->email }}</span>
-                                                    @endif
                                                 </div>
                                             </div>
                                         </li>
