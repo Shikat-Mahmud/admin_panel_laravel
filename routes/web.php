@@ -33,6 +33,8 @@ Route::middleware(['auth', 'permission:admin-panel'])->name('admin.')->prefix('a
     Route::get('/users/roles/{user}', [UserController::class, 'role'])->name('users.roles.edit');
     Route::post('/users/roles/{user}', [UserController::class, 'giveRole'])->name('users.roles');
 
+    // search route
+    Route::get('/search', [IndexController::class, 'search'])->name('search');
 });
 
 Route::get('/admin-login', [IndexController::class, 'login'])->name('admin.login');

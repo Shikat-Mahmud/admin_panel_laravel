@@ -46,11 +46,10 @@
                             <i class="ph ph-magnifying-glass"></i>
                         </a>
                         <div class="dropdown-menu pc-h-dropdown drp-search">
-                            <form class="px-3">
+                            <form id="search-form" class="px-3">
                                 <div class="form-group mb-0 d-flex align-items-center">
-                                    <input type="search" class="form-control border-0 shadow-none"
-                                        placeholder="Search here. . .">
-                                    <button class="btn btn-light-secondary btn-search">Search</button>
+                                    <input type="search" id="search-input" class="form-control border-0 shadow-none" placeholder="Search here. . .">
+                                    <button type="button" class="btn btn-light-secondary btn-search" id="search-button">Search</button>
                                 </div>
                             </form>
                         </div>
