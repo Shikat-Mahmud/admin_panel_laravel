@@ -1,53 +1,8 @@
 @extends('admin.layouts.master')
 @section('title', 'Admin Panel')
-@push('styles')
-<style>
-    .highlight {
-        background-color: yellow;
-    }
-    .table-responsive {
-        margin-top: 20px;
-    }
-    .table {
-        width: 100%;
-        max-width: 100%;
-        margin-bottom: 1rem;
-        background-color: transparent;
-    }
-    .table th,
-    .table td {
-        padding: 0.75rem;
-        vertical-align: top;
-        border-top: 1px solid #dee2e6;
-    }
-    .table thead th {
-        vertical-align: bottom;
-        border-bottom: 2px solid #dee2e6;
-    }
-    .table tbody + tbody {
-        border-top: 2px solid #dee2e6;
-    }
-    .table-bordered {
-        border: 1px solid #dee2e6;
-    }
-    .table-bordered th,
-    .table-bordered td {
-        border: 1px solid #dee2e6;
-    }
-    .table-bordered thead th,
-    .table-bordered thead td {
-        border-bottom-width: 2px;
-    }
-</style>
-@endpush
 @section('content')
     <div class="pc-container">
         <div class="pc-content">
-
-            <div class="p-3 row">
-                <div id="search-results" class="col">
-                </div>
-            </div>
 
             <div class="row">
                 <div class="col-md-6 col-xl-3">
@@ -308,66 +263,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-<script>
-    $(document).ready(function() {
-        $('#search-button').on('click', function(e) {
-            e.preventDefault(); // Prevent the default form submission
-
-            var query = $('#search-input').val();
-
-            $.ajax({
-                url: '{{ route('admin.search') }}', // Use route helper
-                method: 'GET',
-                data: {
-                    query: query
-                },
-                success: function(response) {
-                    // Process the response (update the DOM with search results)
-                    var resultsDiv = $('#search-results');
-                    resultsDiv.empty(); // Clear previous results
-
-                    // Check if response is empty
-                    if (response.length === 0) {
-                        resultsDiv.append('<p>No results found</p>');
-                    } else {
-                        // Iterate over the response and append the results
-                        response.forEach(function(result) {
-                            var resultHtml = '<div style="margin-bottom: 30px;">';
-                            resultHtml += '<h4>' + result.model + '</h4>'; // Model name
-                            resultHtml += '<div class="table-responsive"><table class="table table-bordered"><tbody>';
-
-                            for (var key in result) {
-                                if (result.hasOwnProperty(key) && key !== 'model') {
-                                    var value = result[key];
-
-                                    // Highlight the search term
-                                    var regex = new RegExp('(' + query + ')', 'gi');
-                                    value = String(value).replace(regex, '<span style="background-color: yellow;">$1</span>');
-
-                                    // Check if the key is 'photo' and render an image
-                                    if (key === 'photo' || key === 'image' || key.includes('photo') || key.includes('image')) {
-                                        var imagePath = '{{ asset('storage') }}/' + result[key];
-                                        resultHtml += '<tr><td>' + key + '</td><td><img src="' + imagePath + '" alt="' + result[key] + '" style="max-width: 100px;"></td></tr>';
-                                    } else {
-                                        resultHtml += '<tr><td>' + key + '</td><td>' + value + '</td></tr>';
-                                    }
-                                }
-                            }
-
-                            resultHtml += '</tbody></table></div></div>';
-                            resultsDiv.append(resultHtml);
-                        });
-                    }
-                },
-                error: function(xhr) {
-                    // Handle error
-                    console.error(xhr);
-                    alert('An error occurred while processing your request.');
-                }
-            });
-        });
-    });
-</script>
-@endpush
