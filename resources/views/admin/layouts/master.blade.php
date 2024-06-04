@@ -259,9 +259,9 @@
                                     // Check if the key is 'photo', 'image' or any other image-related attribute
                                     if (key === 'photo' || key === 'image' || key.includes('photo') || key.includes('image')) {
                                         var imagePath = '{{ asset('storage') }}/' + result[key];
-                                        resultHtml += '<tr><td>' + key + '</td><td><img src="' + imagePath + '" alt="' + result[key] + '" style="max-width: 100px;"></td></tr>';
+                                        resultHtml += '<tr><th class="text-uppercase">' + key + '</th><td><img src="' + imagePath + '" alt="' + result[key] + '" style="max-width: 100px;"></td></tr>';
                                     } else {
-                                        resultHtml += '<tr><td>' + key + '</td><td>' + value + '</td></tr>';
+                                        resultHtml += '<tr><th class="text-uppercase">' + key + '</th><td>' + value + '</td></tr>';
                                     }
                                 }
                             }
