@@ -55,8 +55,10 @@
                                     <div class="col-md-8">
                                         <input type="file" name="image" value="{{ $product->image }}"
                                             class="form-control" accept="image/*" />
-                                            <img src="{{ asset('storage/'.$product->image) }}" alt="Product Image" style="height: 80px"
-                                            class="mt-2 rounded">
+                                            @if (isset($product->image))
+                                                <img src="{{ asset('storage/'.$product->image) }}" alt="Product Image" style="height: 80px"
+                                                    class="mt-2 rounded">
+                                            @endif
                                     </div>
                                 </div>
                                 <div class="row mt-3">
