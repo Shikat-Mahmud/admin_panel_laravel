@@ -35,6 +35,9 @@ class PermissionSeeder extends Seeder
             'update-email-setting', 
             'cache-clear',
             'admin-panel',
+            'admin-profile-edit',
+            'admin-profile-update',
+            'admin-profile-delete',
         ];
 
         foreach ($permissions as $permission) {
@@ -53,6 +56,9 @@ class PermissionSeeder extends Seeder
             'create-product', 
             'edit-product', 
             'show-product', 
+            'admin-profile-edit',
+            'admin-profile-update',
+            'admin-profile-delete',
         ]);
 
     }

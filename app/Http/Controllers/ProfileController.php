@@ -16,14 +16,14 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function edit(Request $request): View|RedirectResponse
     {
-        if (auth()->user()) {
+        if (auth()->user()->can('admin-profile-edit')) {
             return view('profile.edit', [
                 'user' => $request->user(),
             ]);
         } else {
-            return redirect()->url()->previous()->with('error', 'You do not have permission to edit profile.');
+            return redirect()->back()->with('error', 'You do not have permission to edit admin profile.');
         }
     }
 
@@ -32,24 +32,28 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        if (auth()->user()->can('admin-profile-update')) {
+            $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        if ($request->hasFile('photo')) {
-            if ($request->user()->photo) {
-                Storage::delete($request->user()->photo);
+            if ($request->user()->isDirty('email')) {
+                $request->user()->email_verified_at = null;
             }
 
-            $photoPath = $request->file('photo')->store('user_photos', 'public');
-            $request->user()->photo = $photoPath;
+            if ($request->hasFile('photo')) {
+                if ($request->user()->photo) {
+                    Storage::delete($request->user()->photo);
+                }
 
+                $photoPath = $request->file('photo')->store('user_photos', 'public');
+                $request->user()->photo = $photoPath;
+
+            }
+
+            $request->user()->update();
+            return Redirect::route('profile.edit')->with('success', 'Profile updated successfully.');
+        } else {
+            return redirect()->back()->with('error', 'You do not have permission to update admin profile.');
         }
-
-        $request->user()->update();
-        return Redirect::route('profile.edit')->with('success', 'Profile updated successfully.');
     }
 
     /**
@@ -57,19 +61,23 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
+        if (auth()->user()->can('admin-profile-delete')) {
+            $request->validateWithBag('userDeletion', [
+                'password' => ['required', 'current_password'],
+            ]);
 
-        $user = $request->user();
+            $user = $request->user();
 
-        Auth::logout();
+            Auth::logout();
 
-        $user->delete();
+            $user->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+            return Redirect::to('/');
+        } else {
+            return redirect()->back()->with('error', 'You do not have permission to delete admin profile.');
+        }
     }
 }

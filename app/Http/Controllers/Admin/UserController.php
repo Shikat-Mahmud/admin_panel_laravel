@@ -31,7 +31,7 @@ class UserController extends Controller
         if (auth()->user()->can('create-user')) {
             return view('admin.main.users.create', compact('roles'));
         } else {
-            return redirect()->back()->with('error', 'You do not have permission to add category.');
+            return redirect()->back()->with('error', 'You do not have permission to add user.');
         }
     }
 
