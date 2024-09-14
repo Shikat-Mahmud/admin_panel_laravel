@@ -55,7 +55,7 @@
                                     <div class="col-md-8">
                                         <input type="file" name="image" value="{{ $product->image }}"
                                             class="form-control" accept="image/*" />
-                                        <img src="{{ asset($product->image) }}" alt="" style="height: 80px"
+                                            <img src="{{ asset('storage/'.$product->image) }}" alt="Product Image" style="height: 80px"
                                             class="mt-1">
                                     </div>
                                 </div>
