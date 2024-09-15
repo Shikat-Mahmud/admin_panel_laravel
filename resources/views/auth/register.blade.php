@@ -46,7 +46,15 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <div class="mb-4">
-                            <a href="#"><img class="img-fluid logo-dark" style="width: auto !important; height: 70px !important; padding: 5px !important; margin-top: 10px !important;" src="{{ asset('storage/' . $general->logo) }}" alt="Logo"></a>  
+                            @php
+                                $settings = generalSettings()
+                            @endphp
+                            
+                            @if (isset($settings->logo))
+                                <a href="{{ url('/') }}"><img class="img-fluid logo-dark" style="width: auto !important; height: 70px !important; padding: 5px !important; margin-top: 10px !important;" src="{{ asset('storage/' . $settings->logo) }}" alt="Logo"></a>  
+                            @else
+                                <a href="{{ url('/') }}"><img class="img-fluid logo-dark" style="width: auto !important; height: 70px !important; padding: 5px !important; margin-top: 10px !important;" src="https://codedthemes.com/demos/admin-templates/gradient-able/bootstrap/default/assets/images/logo-white.svg" alt="Logo"></a>  
+                            @endif   
                         </div>
                         <h3 class="mb-4">Sign up</h3>
                         <!-- Name -->

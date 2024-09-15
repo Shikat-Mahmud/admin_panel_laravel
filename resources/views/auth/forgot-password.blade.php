@@ -8,63 +8,60 @@
 <meta name="keywords" content />
 <meta name="author" content="CodedThemes" />
 
-<link rel="icon" href="https://codedthemes.com/demos/admin-templates/datta-able/bootstrap/assets/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://codedthemes.com/demos/admin-templates/datta-able/bootstrap/assets/images/favicon.ico"
+    type="image/x-icon">
 
-    <link rel="stylesheet" href="{{ asset('/assets/fonts/fontawesome/css/fontawesome-all.min.css') }}">
+<link rel="stylesheet" href="{{ asset('/assets/fonts/fontawesome/css/fontawesome-all.min.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('/assets/plugins/animation/css/animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('/assets/plugins/animation/css/animate.min.css') }}">
+<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 </head>
+
 <body>
-<x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-<form method="POST" action="{{ route('password.email') }}">
-    @csrf
+    <form method="POST" action="{{ route('password.email') }}">
+        @csrf
 
-<div class="auth-wrapper">
-<div class="auth-content">
-<div class="auth-bg">
-<span class="r"></span>
-<span class="r s"></span>
-<span class="r s"></span>
-<span class="r"></span>
-</div>
-<div class="card">
-<div class="card-body text-center">
-<div class="mb-4">
-<a href="#"><img class="img-fluid logo-dark" style="width: auto !important; height: 70px !important; padding: 5px !important; margin-top: 10px !important;" src="{{ asset('storage/' . $general->logo) }}" alt="Logo"></a>  
-</div>
-<h3 class="mb-4">Reset Password</h3>
-       <div class="mt-4">
-            <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus placeholder="Email"/>
-            <x-input-error :messages="$errors->get('email')" class="mt-2" style="color: #FF0000;" />
+        <div class="auth-wrapper">
+            <div class="auth-content">
+                <div class="auth-bg">
+                    <span class="r"></span>
+                    <span class="r s"></span>
+                    <span class="r s"></span>
+                    <span class="r"></span>
+                </div>
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <@php
+                                $settings = generalSettings()
+                            @endphp
+                            
+                            @if (isset($settings->logo))
+                                <a href="{{ url('/') }}"><img class="img-fluid logo-dark" style="width: auto !important; height: 70px !important; padding: 5px !important; margin-top: 10px !important;" src="{{ asset('storage/' . $settings->logo) }}" alt="Logo"></a>  
+                            @else
+                                <a href="{{ url('/') }}"><img class="img-fluid logo-dark" style="width: auto !important; height: 70px !important; padding: 5px !important; margin-top: 10px !important;" src="https://codedthemes.com/demos/admin-templates/gradient-able/bootstrap/default/assets/images/logo-white.svg" alt="Logo"></a>  
+                            @endif 
+                        </div>
+                        <h3 class="mb-4">Reset Password</h3>
+                        <div class="mt-4">
+                            <x-text-input id="email" class="form-control" type="email" name="email"
+                                :value="old('email')" required autofocus placeholder="Email" />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" style="color: #FF0000;" />
+                        </div>
+                        <br>
+                        <button class="btn btn-primary mb-4 shadow-2"> {{ __('Email Password Reset') }}</button>
+                        <p class="mb-0 text-muted">Don’t have an account? <a href="{{ route('register') }}">Signup</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <br>
-<button class="btn btn-primary mb-4 shadow-2"> {{ __('Email Password Reset') }}</button>
-<p class="mb-0 text-muted">Don’t have an account? <a href="{{ route('register') }}">Signup</a></p>
-</div>
-</div>
-</div>
-</div>
-</form>
-<script src="{{ asset('/assets/js/vendor-all.min.js') }}" type="ac2db66612bdc379950ac657-text/javascript"></script>
+    </form>
+    <script src="{{ asset('/assets/js/vendor-all.min.js') }}" type="ac2db66612bdc379950ac657-text/javascript"></script>
     <script src="{{ asset('/assets/js/pcoded.min.js') }}" type="ac2db66612bdc379950ac657-text/javascript"></script>
-    <script src="../../../../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="ac2db66612bdc379950ac657-|49" defer></script>
+    <script src="../../../../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="ac2db66612bdc379950ac657-|49" defer></script>
+
 </html>
-
-
-
-
-
- 
-
-
-
-
-
-
-
-  
-     
- 
-
