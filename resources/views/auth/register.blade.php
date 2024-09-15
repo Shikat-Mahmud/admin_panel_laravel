@@ -51,9 +51,9 @@
                             @endphp
                             
                             @if (isset($settings->logo))
-                                <a href="{{ url('/') }}"><img class="img-fluid logo-dark" style="width: auto !important; height: 70px !important; padding: 5px !important; margin-top: 10px !important;" src="{{ asset('storage/' . $settings->logo) }}" alt="Logo"></a>  
+                                <a href="{{ url('/') }}"><img class="img-fluid logo-dark" style="width: auto !important; height: 50px !important; padding: 5px !important; margin-top: 10px !important;" src="{{ asset('storage/' . $settings->logo) }}" alt="Logo"></a>  
                             @else
-                                <a href="{{ url('/') }}"><img class="img-fluid logo-dark" style="width: auto !important; height: 70px !important; padding: 5px !important; margin-top: 10px !important;" src="https://codedthemes.com/demos/admin-templates/gradient-able/bootstrap/default/assets/images/logo-white.svg" alt="Logo"></a>  
+                                <a href="{{ url('/') }}"><img class="img-fluid logo-dark" style="width: auto !important; height: 50px !important; padding: 5px !important; margin-top: 10px !important;" src="https://codedthemes.com/demos/admin-templates/gradient-able/bootstrap/default/assets/images/logo-dark.svg" alt="Logo"></a>  
                             @endif   
                         </div>
                         <h3 class="mb-4">Sign up</h3>
