@@ -168,9 +168,6 @@
         window.history.back();
     }
 </script>
-{{-- datatable --}}
-<script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
 
 <script data-cfasync="false" src="{{ asset('/js/plugins/email-decode.min.js') }}"></script>
 <script src="{{ asset('/js/plugins/apexcharts.min.js') }}" type="90f9e57eb6fda3c0ef534197-text/javascript"></script>
